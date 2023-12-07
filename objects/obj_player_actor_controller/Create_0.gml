@@ -3,8 +3,8 @@
 actor_inst = noone; 
 crosshair_inst = noone;
 
-/// @arg {Id.Instance<obj_player_actor>} actor 
-/// @arg {Id.Instance<obj_crosshair>} crosshair 
+/// @arg {Id.Instance} actor 
+/// @arg {Id.Instance} crosshair 
 __config = function(actor, crosshair){
 	actor_inst = actor;
 	crosshair_inst = crosshair;
@@ -35,8 +35,8 @@ fsm.add("idle", {
 	},
 	step : function(){
 		input_dir_get();
-		actor_inst.move(input_dir_x);
-		crosshair_inst.move(input_dir_x, input_dir_y);
+		actor_inst.move(actor_move_spd, input_dir_x);
+		crosshair_inst.move(crosshair_move_spd, input_dir_x, input_dir_y);
 	
 		if(keyboard_check(vk_space))
 			fsm.change("shooting");
@@ -49,7 +49,7 @@ fsm.add("shooting", {
 	},
 	step : function(){
 		input_dir_get();
-		crosshair_inst.move(input_dir_x, input_dir_y);
+		crosshair_inst.move(crosshair_move_spd, input_dir_x, input_dir_y);
 
 		if(keyboard_check(vk_space)){
 			if(--trigger_cd <= 0){

@@ -5,7 +5,7 @@ is_shooting = false;
 __move_limit_left = 0;
 __move_limit_right = room_width;
 
-move = function(dir_x){
+move = function(move_speed, dir_x){
 	if(is_shooting) return;
 	
 	if(dir_x == 0){
